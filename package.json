@@ -1,5 +1,5 @@
 {
-  "name": "project-utils",
+  "name": "project-util",
   "version": "1.0.0",
   "description": "project, utils, util",
   "main": "./dist/index.js",
@@ -7,6 +7,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
+  },
+  "homepage": "https://github.com/15523257452/project-utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/15523257452/project-utils"
   },
   "keywords": ["project", "utils", "util", "project-utils", "array", "object"],
   "author": "",
