@@ -1,0 +1,17 @@
+{
+  "name": "project-utils",
+  "version": "1.0.0",
+  "description": "project, utils, util",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": ["project", "utils", "util", "project-utils", "array", "object"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.7.3"
+  }
+}
