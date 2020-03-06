@@ -1,25 +1,64 @@
 #### 项目的常用工具类
 
 * 无任何第三方依赖
+* 后续会持续更新。。。
 
 #### 导入
 ```typescript
-import {ArrayUtils, 
-        ObjectUtils,
-        DateUtils,
-        StorageUtils,
-        MathUtils} from "project-util";
+import {
+    ArrayUtils, 
+    ObjectUtils,
+    DateUtils,
+    StorageUtils,
+    MathUtils,
+    RegularUtils,
+    PlatformUtils} from "project-util";
 
 ```
 
 ##### V1.0.5 版本修改
 
-* 添加泛型支持
-* 新增MathUtils 工具类
+- 添加泛型支持
+- 新增MathUtils 工具类
+
+##### V1.0.6 版本修改
+
+- 新增 PlatformUtils
+- 新增常用的正则 RegularUtils
+
+##### RegularUtils：
+
+```typescript
+// 匹配手机号
+checkPhone(phone: string | number): boolean
+
+// 匹配邮箱
+checkEmail(email: string): boolean
+
+// 匹配URL
+checkUrl(url: string): boolean
+
+// 匹配身份证号码
+checkIdNumber(number: number | string): boolean
+
+// 匹配邮编
+checkZipCode(zipCode: string): boolean
+```
 
 
 
-##### MathUtils（新增）：
+##### PlatformUtils
+
+```typescript
+// 获取当前的运行平台 （不支持node环境）
+getPlatform(): Platform
+// 是否是微信环境
+isWeChat(): boolean
+```
+
+
+
+##### MathUtils：
 
 ```typescript
 /**
@@ -83,6 +122,12 @@ deleteItem<T = any>(array: T[], start: number, count?: number) => T[]
 
 //指定位置新增元素 返回新的数组
 addItem<T = any>(array: T[], start: number, newItem: T) => T[]
+/**
+ * 排序
+ * @param flag: 升序 或者 降序
+ * @param key: 根据数组的某个字段排序
+ */
+sort<T = any>(array: T[], flag: boolean, key?: string) => T[]
 ```
 
 
