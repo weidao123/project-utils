@@ -9,7 +9,7 @@ import {IArrayUtils} from "../types/IArrayUtils";
 class ArrayUtilsImpl implements IArrayUtils {
 
     /**
-     * 找出两个数组的差值
+     * 找出两个数组的差集
      * @param array1
      * @param array2
      */
@@ -73,6 +73,23 @@ class ArrayUtilsImpl implements IArrayUtils {
             newArray.push(item);
         });
         return newArray;
+    }
+
+    /**
+     * 对数组进行排序
+     * @param array
+     * @param flag 升序 或者 降序
+     * @param key 根据数组的某个字段进行排序
+     */
+    public sort<T = any>(array: T[], flag: boolean = true, key?: string): T[] {
+        array.sort((item1: T, item2: T) => {
+            if (key) {
+                return flag ? item1[key] - item2[key] : item2[key] - item1[key];
+            } else {
+                return flag ? Number(item1) - Number(item2) : Number(item2) - Number(item1);
+            }
+        });
+        return array;
     }
 }
 
