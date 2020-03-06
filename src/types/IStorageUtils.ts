@@ -1,5 +1,5 @@
 export interface IStorageUtils {
-    getStorage: (key: string, json?: boolean) => any
+    getStorage: <T = any>(key: string, isJson?: boolean) => T
 
     setStorage: (key: string, value: any, json?: boolean) => void
 

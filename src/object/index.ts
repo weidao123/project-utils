@@ -12,8 +12,8 @@ class ObjectUtilsImpl implements IObjectUtils {
      * 对象的深拷贝
      * @param obj
      */
-    public deepClone(obj: any): object {
-        let result: object = {};
+    public deepClone<T = any>(obj: T): T {
+        const result: any = {};
         let keys: string[] = Object.getOwnPropertyNames(obj);
         keys.forEach((item: string) => {
             if(typeof obj[item] === 'object') {

@@ -16,15 +16,15 @@ class StorageUtilsImpl implements IStorageUtils {
         return false;
     }
 
-    getStorage(key: string, json?: boolean): any {
+    getStorage<T = any>(key: string, isJson?: boolean): T {
         if(window.sessionStorage) {
             let result: any = window.sessionStorage.getItem(key);
-            if(json) {
+            if(!!isJson === true) {
                 return JSON.parse(result)
             }
             return result;
         } {
-            return false;
+            return null;
         }
     }
 

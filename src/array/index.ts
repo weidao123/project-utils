@@ -13,11 +13,11 @@ class ArrayUtilsImpl implements IArrayUtils {
      * @param array1
      * @param array2
      */
-    public diff(array1: any[], array2: any[] | any): any[] {
+    public diff<T = any>(array1: T[], array2: T[]): T[] {
         const result: any[] = [];
-        array1.forEach((item: any) => {
+        array1.forEach((item: T) => {
             if (typeof item === 'object') {
-                array2.forEach((val: any) => {
+                array2.forEach((val: T) => {
                     if (JSON.stringify(val) === JSON.stringify(item)) result.push(item);
                 });
             } else if (array2.includes(item)) {
@@ -31,15 +31,15 @@ class ArrayUtilsImpl implements IArrayUtils {
      * 去掉重复元素
      * @param array
      */
-    public removeRepeat(array: any[]): any[] {
+    public removeRepeat<T = any>(array: T[]): T[] {
         let flag: boolean = false;
-        let result: any[] = [];
-        array.forEach((item: any) => {
+        let result: T[] = [];
+        array.forEach((item: T) => {
             if (typeof item === 'object') flag = true;
         });
         if (flag) {
-            let newArray: string[] = array.map(item => String(JSON.stringify(item)));
-            result = Array.from(new Set(newArray));
+            let newArray: string[] = array.map(item => JSON.stringify(item));
+            result = Array.from(new Set(newArray)).map( item => JSON.parse(item) );
         } else {
             result = Array.from(new Set(array));
         }
@@ -52,9 +52,9 @@ class ArrayUtilsImpl implements IArrayUtils {
      * @param start
      * @param count
      */
-    public deleteItem(array: any[], start: number, count: number = 1): any[] {
-        let newArray: any[] = [];
-        array.forEach((item: any, index: number) => {
+    public deleteItem<T = any>(array: T[], start: number, count: number = 1): T[] {
+        let newArray: T[] = [];
+        array.forEach((item: T, index: number) => {
             if (index !== start && index > start + count - 1) {
                 newArray.push(item);
             }
@@ -65,7 +65,7 @@ class ArrayUtilsImpl implements IArrayUtils {
     /**
      * 在指定位置添加元素
      */
-    public addItem(array: any[], start: number, newItem: any): any[] {
+    public addItem<T = any>(array: T[], start: number, newItem: T): T[] {
         if(start >= array.length) return array;
         let newArray: any[] = [];
         array.forEach((item: any, index: number) => {

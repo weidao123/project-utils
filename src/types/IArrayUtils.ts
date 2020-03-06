@@ -3,13 +3,13 @@ export interface IArrayUtils {
     /**
      * 找出两个数组的差值
      */
-    diff: (array1: any[], array2: any[]) => any[]
+    diff: <T = any>(array1: T[], array2: T[]) => T[]
 
     /**
      * 去掉数组重复元素
      * @param array
      */
-    removeRepeat: (array: any[]) => any[]
+    removeRepeat: <T = any>(array: T[]) => T[]
 
     /**
      * 删除指定元素
@@ -17,10 +17,10 @@ export interface IArrayUtils {
      * @param start 开始位置
      * @param count 删除的数量 默认 1
      */
-    deleteItem: (array: any[], start: number, count?: number) => any[]
+    deleteItem: <T = any>(array: T[], start: number, count?: number) => T[]
 
     /**
      * 指定位置新增元素
      */
-    addItem: (array: any[], start: number, newItem: any) => any[]
+    addItem: <T = any>(array: T[], start: number, newItem: T) => T[]
 }

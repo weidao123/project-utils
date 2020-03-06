@@ -1,15 +1,53 @@
-## 项目的常用工具类
+#### 项目的常用工具类
 
-#### import
+* 无任何第三方依赖
+
+#### 导入
 ```typescript
-import {ArrayUtils} from "project-util";
-import {ObjectUtils} from "project-util";
-import {DateUtils} from "project-utile";
-import {StorageUtils} from "project-util";
+import {ArrayUtils, 
+        ObjectUtils,
+        DateUtils,
+        StorageUtils,
+        MathUtils} from "project-util";
+
+```
+
+##### V1.0.5 版本修改
+
+* 添加泛型支持
+* 新增MathUtils 工具类
+
+
+
+##### MathUtils（新增）：
+
+```typescript
+/**
+* 获取指定区间的随机数
+* @param min
+* @param max
+*/
+random(min: number, max: number): number;
+
+/**
+ * 获取指定区间的随机整数
+ * @param min
+ * @param max
+ */
+randomInt(min: number, max: number): number;
+
+/**
+ * 浮点运算 可返回精确的浮点运算结果
+ * @param num1
+ * @param num2
+ * @param type 运算的类型 (例如加法：FloatOperationType.ADD)
+ */
+floatOperation(num1: number, num2: number, type: FloatOperationType): number;
 ```
 
 
-#### DateUtils：时间日期的相关工具类
+
+##### DateUtils：
 
 ```typescript
 //获取当前或指定日期
@@ -29,36 +67,38 @@ getHoursMinutesSecondsDiff(start: number | string, end: number | string) => stri
 ```
 
 
-#### ArrayUtils：数组相关的工具类
-    
+##### ArrayUtils：
+
 ```typescript
+// 所有的数组操作不贵改变原数组
+
 //返回两个数组的差值 返回新的数组
-diff: (array1: any[], array2: any[]) => any[]
+diff<T = any>(array1: T[], array2: T[]) => T[]
 
 //去掉重复元素 返回新的数组
-removeRepeat: (array: any[]) => any[]
+removeRepeat<T = any>(array: T[]) => T[]
 
 //删除指定元素 返回新的数组
-deleteItem: (array: any[], start: number, count?: number) => any[] 
+deleteItem<T = any>(array: T[], start: number, count?: number) => T[] 
 
 //指定位置新增元素 返回新的数组
-addItem: (array: any[], start: number, newItem: any) => any[]
+addItem<T = any>(array: T[], start: number, newItem: T) => T[]
 ```
 
 
-#### ObjectUtils：Object相关的工具类
-    
+##### ObjectUtils：
+
 ```typescript
 //深度拷贝一个对象， 返回新的对象
-deepClone: (obj: object | any) => object 
+deepClone<T = any>(obj: T) => T 
 ```
 
 
-#### StorageUtils： sessionStorage 相关的工具类
-   
+##### StorageUtils： 
+
 ```typescript
 //获取一个储存的值
-getStorage (key: string, json?: boolean) => any                 
+getStorage<T = any>(key: string, isJson?: boolean) => T                 
 
 //设置值
 setStorage (key: string, value: any, json?: boolean) => void

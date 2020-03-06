@@ -1,6 +1,6 @@
 {
   "name": "project-util",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "project, utils, util",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,6 +16,7 @@
   "keywords": ["project", "utils", "util", "project-utils", "array", "object"],
   "author": "",
   "license": "ISC",
+  "files": ["dist", "package.json"],
   "dependencies": {
     "typescript": "^3.7.3"
   }
