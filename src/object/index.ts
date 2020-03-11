@@ -31,6 +31,25 @@ class ObjectUtilsImpl implements IObjectUtils {
         });
         return  result;
     }
+
+    /**
+     * 根据对象地址获取值
+     * @param obj
+     * @param path (aaa.bbb.ccc)
+     */
+    public getPath<T = any>(obj: any, path: string): T {
+        const pathArray = path.split(".");
+        let result: any = obj;
+        for (const item of pathArray) {
+            if (typeof result[item] !== 'undefined') {
+                result = result[item];
+            } else {
+                return null;
+            }
+        }
+        return result;
+    }
 }
 
 export const ObjectUtils: IObjectUtils = new ObjectUtilsImpl();
+
