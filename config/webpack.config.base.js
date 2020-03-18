@@ -15,7 +15,14 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 exclude: [path.resolve(__dirname, 'node_modules')],
-                loader: 'ts-loader'
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            appendTsSuffixTo: [/\.vue$/]
+                        }
+                    }
+                ]
             }
         ]
     },

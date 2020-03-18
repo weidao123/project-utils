@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * 用于测试 project-utils 包
  */
