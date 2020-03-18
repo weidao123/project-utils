@@ -1,8 +1,10 @@
 /node_modules/
 /src/
+/config/
 /example/
 /dist_example/
 shims-tsx.d.ts
 shims-vue.d.ts
 .yarn.lock
+.index.html
 .idea/
