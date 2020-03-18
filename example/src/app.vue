@@ -8,7 +8,7 @@
 /**
  * 用于测试 project-utils 包
  */
-import { request, requestContext } from "../../src";
+import { request, requestContext } from "../../dist_example";
 
 export default {
     data() {

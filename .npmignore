@@ -1,4 +1,8 @@
 /node_modules/
 /src/
+/example/
+/dist_example/
+shims-tsx.d.ts
+shims-vue.d.ts
 .yarn.lock
 .idea/

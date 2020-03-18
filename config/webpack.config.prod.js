@@ -6,10 +6,11 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const baseConfig = require('./webpack.config.base');
 
 module.exports = {
-    entry: './example/main.ts',
+    entry: './src/index.ts',
     output: {
         filename: "index.js",
         path: path.resolve(__dirname, '../dist_example'),
+        libraryTarget: 'umd',
     },
     plugins: [
         new Webpack.HotModuleReplacementPlugin(),
