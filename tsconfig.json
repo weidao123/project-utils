@@ -5,7 +5,7 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist"
-  }
+  },
 //  "compilerOptions": {
 //    "outDir": "./dist",
 //    // "sourceMap": true,
@@ -28,6 +28,6 @@
 //    "paths": { "*": ["types/*"] }
 //    // "suppressImplicitAnyIndexErrors": true, //阻止对缺少索引签名的索引对象报错
 //  },
-//  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "example"]
 //  "include": ["src/**/*"]
 }
