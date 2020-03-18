@@ -47,8 +47,17 @@ class XMLHttp implements XMLHttpRequestInterface {
      */
     public xhrPromise(requestOptions: RequestOptions, resolve: Function, reject: Function): void {
 
-        //获取超时时间
+        // 存储 XMLHttpRequest 对象
+        requestContext.setXMLHttpRequest(this.xhr);
+
+        // 利用timeout 模拟实现请求超时
         let timeoutTime: number = requestOptions.timeout || requestContext.getTimeout();
+        const timeoutFlag = setTimeout(() => {
+            this.xhr.abort();
+            requestContext.onTimeout();
+            requestContext.requestFail(this.xhr);
+            throw new Error('request timeout');
+        }, timeoutTime);
 
         //部分浏览器不支持timout 待后期使用setTimeout 方法模拟实现
         if(this.xhr.timeout) this.xhr.timeout = timeoutTime;
@@ -70,12 +79,14 @@ class XMLHttp implements XMLHttpRequestInterface {
                 //请求成功 调用afterRequest 生命周期方法
                 requestContext.afterRequest && requestContext.afterRequest(response);
                 resolve(response);
+                clearTimeout(timeoutFlag);
                 return;
             } else {
                 if (this.xhr.readyState === 4) {
                     //请求成功 调用afterRequest 生命周期方法
                     requestContext.requestFail && requestContext.requestFail(this.xhr);
                     reject();
+                    clearTimeout(timeoutFlag);
                 }
             }
         };
@@ -102,8 +113,10 @@ class XMLHttp implements XMLHttpRequestInterface {
             let urlParams: string = "";
             let keys: string[] = Object.keys(params);
             keys.forEach((key: string, index: number) => urlParams += `${key}=${params[key]}${index + 1 !== keys.length ? '&' : ''}`);
-            if (requestOptions.url.indexOf("?") === -1) requestOptions.url = requestOptions.url + "?";
-            requestOptions.url += urlParams;
+            if (requestOptions.url.indexOf("?") === -1 && urlParams !== "") {
+                requestOptions.url = requestOptions.url + "?";
+            }
+            requestOptions.url = requestOptions.url + urlParams;
         }
 
         //判断有没有设置baseURL
@@ -169,6 +182,9 @@ export class HttpService<T> extends XMLHttp implements RequestParamsConfig {
  * @param requestParams 请求参数
  */
 export async function request<T = Response>(requestParams: RequestOptions): Promise<T> {
+    if (!requestParams.body) {
+        requestParams.body = {};
+    }
     const httpService = new HttpService<Response>(requestParams);
     return await httpService.request();
 }

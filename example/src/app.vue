@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        {{ message }}
+        <h1>{{ message }}</h1>
     </div>
 </template>
 
@@ -8,16 +8,32 @@
 /**
  * 用于测试 project-utils 包
  */
-import { request } from "../../dist";
+import { request, requestContext } from "../../src";
 
 export default {
     data() {
         return {
-            message: 'test main app',
+            message: 'test project-utils',
         }
     },
-    mounted() {
-        console.log(request);
+    methods: {
+        afterRequest(res) {
+            console.log(res);
+            console.log('afterRequest');
+        },
+        timeout() {
+            console.log();
+        },
+    },
+    async mounted() {
+        console.log(requestContext);
+        requestContext.afterRequest = this.afterRequest;
+        requestContext.setTimeout(10000);
+        requestContext.onTimeout = this.timeout;
+        const res = await request({ url: '/dynamic/list', method: 'GET', timeout: 500, body: {
+            type: 'HOT'
+            }});
+        console.log(res);
     }
 }
 </script>

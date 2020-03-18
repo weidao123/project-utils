@@ -2,10 +2,12 @@
  * 暴露对外Request设置全局的上下文参数
  * 以及beforeRequest 和 afterRequest生命周期函数
  */
-import {Header, RequestContext} from "../types/RequestContext";
+import {Header} from "../types/RequestContext";
 import {RequestOptions, Response} from "../types/Request";
 
-class RequestContextImpl implements RequestContext {
+class RequestContextImpl {
+
+    public xhr: XMLHttpRequest;
 
     /**
      * 根路径
@@ -122,7 +124,17 @@ class RequestContextImpl implements RequestContext {
     public onprogress(params: any): any {
 
     }
+
+    public abort(): void {
+        if (this.xhr) {
+            this.xhr.abort();
+        }
+    }
+
+    public setXMLHttpRequest(xhr: XMLHttpRequest): void {
+        this.xhr = xhr;
+    }
 }
 
-export const requestContext: RequestContext = new RequestContextImpl();
+export const requestContext = new RequestContextImpl();
 

@@ -8,6 +8,9 @@ export interface Header {
  * request全局的上下文配置信息
  */
 export interface RequestContext {
+
+    xhr: XMLHttpRequest
+
     /**
      * 根路径
      */
@@ -66,4 +69,8 @@ export interface RequestContext {
     onError(): any
 
     onprogress(params: any): any
+
+    abort(): void
+
+    setXMLHttpRequest(xhr: XMLHttpRequest): void
 }

@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "webpack-dev-server --mode development --config ./config/webpack.config.dev.js"
+    "build:lib": "webpack --mode production --config ./config/webpack.config.prod.js",
+    "dev": "webpack-dev-server --mode development --config ./config/webpack.config.dev.js",
+    "compress": "webpack --mode production --config ./config/webpack.config.compress.js"
   },
   "homepage": "https://github.com/15523257452/project-utils",
   "repository": {
@@ -29,9 +31,11 @@
     "package.json"
   ],
   "dependencies": {
+    "awesome-typescript-loader": "^5.2.1",
     "path": "^0.12.7",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.0",
     "vue-template-compiler": "^2.6.11"
