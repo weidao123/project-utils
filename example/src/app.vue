@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <h1>{{ message }}</h1>
+        <h1 @click="test_Util_throttle">{{ message }}</h1>
     </div>
 </template>
 
@@ -39,17 +39,22 @@ export default {
         }
     },
     methods: {
-        afterRequest(res) {
+        test_Util_getTreeData() {
+            const res = Util.getTreeData({ dataSource: testData, childrenKey: 'cc' });
             console.log(res);
-            console.log('afterRequest');
         },
-        timeout() {
-            console.log();
+        test() {
+            console.log(this);
         },
+        test_Util_antiShake() {
+            Util.antiShake(this.test)
+        },
+        test_Util_throttle() {
+            Util.throttle(this.test);
+        }
     },
     async mounted() {
-        const res = Util.getTreeData({ dataSource: testData, childrenKey: 'cc' });
-        console.log(res);
+        console.log(Util.getURLParams());
     }
 }
 </script>
