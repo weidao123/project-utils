@@ -12,19 +12,77 @@ import {
     StorageUtils,
     MathUtils,
     RegularUtils,
-    PlatformUtils} from "project-util";
+    PlatformUtils,
+	request,
+	requestContext} from "project-util";
 
 ```
+
+##### V1.0.7 版本修改
+
+- 新增 request 基于XMLHttpRequest封装
+- 新增 requestContext 来对请求做一些全局配置
+- StorageUtils 新增Cookie的相关操作
+
+##### V1.0.6 版本修改
+
+- 新增 PlatformUtils
+- 新增常用的正则 RegularUtils
 
 ##### V1.0.5 版本修改
 
 - 添加泛型支持
 - 新增MathUtils 工具类
 
-##### V1.0.6 版本修改
+##### request：
 
-- 新增 PlatformUtils
-- 新增常用的正则 RegularUtils
+```ty
+// 支持传入泛型 默认返回 Promise<Response> 类型
+request<T = Response>(requestParams: RequestOptions): Promise<T>
+
+// 请求的参数的配置项
+interface RequestOptions {
+
+    // 请求的URL
+    url: string
+
+    // 请求的方法
+    method: RequestMethodType
+
+    // 请求的内容参数 GET 参数也可以放到这里
+    body?: any
+
+    // 设置单次的请求头
+    header?: Header
+
+    // 设置超时时间 default: 30000
+    timeout?: number | undefined
+}
+
+// 以下是 requestContext 上的一些方法 可用来做一些全局配置 
+
+// 请求失败
+requestFail(xhr: XMLHttpRequest): void
+// 设置BaseURL
+setBaseURL(baseURL: string): void
+// 设置全局公共参数
+setGlobalParams(params: object): void
+// 设置全剧请求头
+setRequestHeaders(header: Header): void
+// 设置超时时间
+setTimeout(timeout: number): void
+// 请求超时
+onTimeout(): any
+// 请求出错
+onError(): any
+// 文件上传的进度
+onprogress(params: any): any
+
+abort(): void
+
+```
+
+
 
 ##### RegularUtils：
 
@@ -142,13 +200,21 @@ deepClone<T = any>(obj: T) => T
 ##### StorageUtils： 
 
 ```typescript
-//获取一个储存的值
+// 获取一个储存的值
 getStorage<T = any>(key: string, isJson?: boolean) => T                 
 
-//设置值
+// 设置值
 setStorage (key: string, value: any, json?: boolean) => void
 
-//删除值 
+// 删除值 
 deleteStorage (key: string) => boolean
+
+// 设置cookie
+setCookie(key: string, value: string, expires?): void
+
+// 删除
+removeCookie(key: string): void
+// 获取
+getCookie(key: string): string
 ```
 
