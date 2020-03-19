@@ -7,6 +7,7 @@ import {RegularConstants, RegularUtils} from "./regular";
 import {Platform, PlatformUtils} from "./platform";
 import { request } from "./request";
 import { requestContext } from "./request/RequestContext";
+import {Util} from "./common";
 
 export {
     ArrayUtils,
@@ -21,4 +22,7 @@ export {
     PlatformUtils,
     requestContext,
     request,
+    Util,
 }
+
+export default Util
