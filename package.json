@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "build:lib": "webpack --mode production --config ./config/webpack.config.prod.js",
+    "build:package": "tsc && npm run build:lib",
     "dev": "webpack-dev-server --mode development --config ./config/webpack.config.dev.js"
   },
   "homepage": "https://github.com/15523257452/project-utils",
@@ -32,6 +33,7 @@
   ],
   "dependencies": {
     "awesome-typescript-loader": "^5.2.1",
+    "copy-webpack-plugin": "^5.1.1",
     "path": "^0.12.7",
     "project-util": "^1.0.70",
     "ts-loader": "^6.2.1",

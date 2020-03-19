@@ -8,8 +8,8 @@
 /**
  * 用于测试 project-utils 包
  */
-import { request, requestContext } from "../../dist";
-// import { request, requestContext } from "project-util";
+// import { request, requestContext } from "../../dist";
+import { request, requestContext } from "project-util";
 
 export default {
     data() {
