@@ -35,7 +35,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^5.1.1",
     "path": "^0.12.7",
-    "project-util": "^1.0.70",
+    "project-util": "^1.0.72",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^2.2.0",

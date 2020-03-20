@@ -1,21 +1,13 @@
-#### 项目的常用工具类
+#### 说明
+
+* 价格开发中可能会经常用的到一些方法进行了统一的封装
 
 * 无任何第三方依赖
 * 后续会持续更新。。。
 
-#### 导入
+#### 使用
 ```typescript
-import {
-    ArrayUtils, 
-    ObjectUtils,
-    DateUtils,
-    StorageUtils,
-    MathUtils,
-    RegularUtils,
-    PlatformUtils,
-	request,
-	requestContext} from "project-util";
-
+yarm add project-util 或者 npm install project-util
 ```
 
 ##### V1.0.7 版本修改
@@ -23,6 +15,7 @@ import {
 - 新增 request 基于XMLHttpRequest封装
 - 新增 requestContext 来对请求做一些全局配置
 - StorageUtils 新增Cookie的相关操作
+- 新增 Util
 
 ##### V1.0.6 版本修改
 
@@ -34,29 +27,86 @@ import {
 - 添加泛型支持
 - 新增MathUtils 工具类
 
+##### Util
+
+```typescript
+import { Util } from 'project-util'
+```
+
+```typescript
+interface Tree {
+    // 存放子集的 item key  default: children
+    childrenKey?: string
+
+    // 唯一标识的key  default: id
+    idKey?: string
+
+    // 关联父级的key  default: pid
+    pidKey?: string
+
+    // 原始数据
+    dataSource: any[]
+}
+
+/**
+* @description 生成一个树型结构的数据 注意：一级结构的 pid 必须为false
+*      并且记录 每一个 children 的子级数量
+*      _count 不包含有的 children 这一项的数量
+*      _allCount 下面的所有的子集数量
+*      _childrenCount 拥有的一级子集数量
+*/
+getTreeData<T = any>(params: Tree): T[]
+
+/**
+* 防抖
+* @param fun 要执行的方法
+* @param time
+*/
+antiShake(fun: Function, time: number = 500)
+/**
+* 节流
+* @param fun 要执行的方法
+* @param time
+*/
+throttle(fun: Function, time: number = 500)
+
+/**
+* 获取 URL 上的参数
+* @param params 不传 默认回去全部参数
+*/
+getURLParams<T = any>(params?: { url?: string, key?: string }): T
+```
+
+
+
 ##### request：
 
-```ty
+```typescript
+import { request, requestContext } from 'project-util';
+```
+
+```typescript
+
 // 支持传入泛型 默认返回 Promise<Response> 类型
 request<T = Response>(requestParams: RequestOptions): Promise<T>
 
 // 请求的参数的配置项
 interface RequestOptions {
 
-    // 请求的URL
-    url: string
+// 请求的URL
+url: string
 
-    // 请求的方法
-    method: RequestMethodType
+// 请求的方法
+method: RequestMethodType
 
-    // 请求的内容参数 GET 参数也可以放到这里
-    body?: any
+// 请求的内容参数 GET 参数也可以放到这里
+body?: any
 
-    // 设置单次的请求头
-    header?: Header
+// 设置单次的请求头
+header?: Header
 
-    // 设置超时时间 default: 30000
-    timeout?: number | undefined
+// 设置超时时间 default: 30000
+timeout?: number | undefined
 }
 
 // 以下是 requestContext 上的一些方法 可用来做一些全局配置 
@@ -87,6 +137,10 @@ abort(): void
 ##### RegularUtils：
 
 ```typescript
+import { RegularUtils } from 'project-util';
+```
+
+```typescript
 // 匹配手机号
 checkPhone(phone: string | number): boolean
 
@@ -108,6 +162,10 @@ checkZipCode(zipCode: string): boolean
 ##### PlatformUtils
 
 ```typescript
+import { PlatformUtils } from 'project-util';
+```
+
+```typescript
 // 获取当前的运行平台 （不支持node环境）
 getPlatform(): Platform
 // 是否是微信环境
@@ -117,6 +175,10 @@ isWeChat(): boolean
 
 
 ##### MathUtils：
+
+```typescript
+import { MathUtils } from 'project-util';
+```
 
 ```typescript
 /**
@@ -147,6 +209,10 @@ floatOperation(num1: number, num2: number, type: FloatOperationType): number;
 ##### DateUtils：
 
 ```typescript
+import { DateUtils } from 'project-util';
+```
+
+```typescript
 //获取当前或指定日期
 getDate(temp?: number | string, type?: string) => string
 
@@ -164,7 +230,12 @@ getHoursMinutesSecondsDiff(start: number | string, end: number | string) => stri
 ```
 
 
+
 ##### ArrayUtils：
+
+```typescript
+import { ArrayUtils } from 'project-util';
+```
 
 ```typescript
 // 所有的数组操作不贵改变原数组
@@ -189,7 +260,12 @@ sort<T = any>(array: T[], flag: boolean, key?: string) => T[]
 ```
 
 
+
 ##### ObjectUtils：
+
+```typescript
+import { ObjectUtils } from 'project-util';
+```
 
 ```typescript
 //深度拷贝一个对象， 返回新的对象
@@ -197,7 +273,12 @@ deepClone<T = any>(obj: T) => T
 ```
 
 
+
 ##### StorageUtils： 
+
+``` typescript
+import { StorageUtils } from 'project-util';
+```
 
 ```typescript
 // 获取一个储存的值

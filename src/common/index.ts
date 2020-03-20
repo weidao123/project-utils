@@ -114,6 +114,9 @@ export class Util {
         if (!url) {
             url = location.href;
         }
+        if (url.indexOf("?") === -1) {
+            return null;
+        }
         url = url.substring(url.indexOf("?") + 1);
         const arr = url.split("&").map((item) => item.split("="));
         const obj: any = {};

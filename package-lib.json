@@ -1,6 +1,6 @@
 {
   "name": "project-util",
-  "version": "1.0.70",
+  "version": "1.0.72",
   "description": "project, utils, util",
   "main": "./dist/index.js",
   "types": "./dist/typing/index.d.ts",
@@ -8,6 +8,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/15523257452/project-utils"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "keywords": [
     "project",

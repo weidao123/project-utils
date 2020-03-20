@@ -8,7 +8,7 @@
 /**
  * 用于测试 project-utils 包
  */
-import { request, requestContext, Util } from "../../src";
+import { request, requestContext, Util } from "project-util";
 // import { request, requestContext } from "project-util";
 const testData = [
     { id: 1, value: '1一级目录' },
