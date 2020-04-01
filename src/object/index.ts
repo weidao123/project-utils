@@ -14,7 +14,7 @@ class ObjectUtilsImpl implements IObjectUtils {
      */
     public deepClone<T = any>(obj: T): T {
         const result: any = {};
-        let keys: string[] = Object.getOwnPropertyNames(obj);
+        let keys: string[] = Object.keys(obj);
         keys.forEach((item: string) => {
             if(typeof obj[item] === 'object') {
                 result[item] = this.deepClone(obj[item]);
@@ -24,7 +24,7 @@ class ObjectUtilsImpl implements IObjectUtils {
                 Object.defineProperty(result, item, {
                     configurable: old.configurable,
                     enumerable: old.enumerable,
-                    value: old.value,
+                    value: obj[item],
                     writable: old.writable
                 });
             }

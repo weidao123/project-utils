@@ -8,7 +8,7 @@
 /**
  * 用于测试 project-utils 包
  */
-import { request, requestContext, Util } from "project-util";
+import { request, requestContext, Util, ObjectUtils } from "../../src";
 // import { request, requestContext } from "project-util";
 const testData = [
     { id: 1, value: '1一级目录' },
@@ -36,6 +36,10 @@ export default {
     data() {
         return {
             message: 'test project-utils',
+            obj: {
+                name: 10,
+                cc: 10
+            }
         }
     },
     methods: {
@@ -51,10 +55,13 @@ export default {
         },
         test_Util_throttle() {
             Util.throttle(this.test);
+        },
+        test_ObjectUtil() {
+            console.log(ObjectUtils.deepClone(this.obj));
         }
     },
     async mounted() {
-        console.log(Util.getURLParams());
+        this.test_ObjectUtil();
     }
 }
 </script>
